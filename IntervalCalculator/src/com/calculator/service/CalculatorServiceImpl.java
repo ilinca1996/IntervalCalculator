@@ -20,7 +20,7 @@ public class CalculatorServiceImpl implements CalculatorService {
 			LocalDateTime start = formatDateTime(intervalList.get(i).getStart());
 			LocalDateTime end = formatDateTime(intervalList.get(i).getEnd());
 			intervalList.get(i).setDuration(calculateDuration(start, end));
-			if (intervalList.get(i).getId() != 0) {
+			if (i != 0) {
 				intervalList.get(i).setIntervalBreak(
 						calculateDuration(formatDateTime(intervalList.get(i - 1).getEnd()), start));
 			}
@@ -32,13 +32,8 @@ public class CalculatorServiceImpl implements CalculatorService {
 	private String calculateDuration(LocalDateTime start, LocalDateTime end) {
 
 		Duration duration = Duration.between(start, end);
-		String result;
-		if (Math.abs(duration.toMinutes()) >= 60)
-			result = Math.abs(duration.toMinutes()) / 60 + "h" + Math.abs(duration.toMinutes()) % 60 + "m";
-		else
-			result = "0h" + duration.toMinutes() + "m";
 
-		return result;
+		return Math.abs(duration.toMinutes()) / 60 + "h" + Math.abs(duration.toMinutes()) % 60 + "m";
 	}
 
 	private LocalDateTime formatDateTime(String dateTime) {

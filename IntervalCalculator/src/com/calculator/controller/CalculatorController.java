@@ -18,7 +18,7 @@ public class CalculatorController {
 	@Autowired
 	private CalculatorService calculatorService;
 	
-	@PostMapping("/calculateInterval")
+	@PostMapping("/intervals")
 	public List<Interval> calculateInterval(@RequestBody List<Interval> intervalList) {
 		
 		return calculatorService.calculateInterval(intervalList);
